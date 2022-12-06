@@ -1,0 +1,8 @@
+<H3>Деятели</H3>
+{% for people in people_list %}
+ {% if people["death"] != None %}
+ <P><A href=people/{{people["id"]}}>{{ people["name"] }} ({{ people["date_of_birth"] }}-{{ people["death"]}})</A></P>
+ {% else %}
+ <P><A href=people/{{people["id"]}}>{{ people["name"] }} (род.{{ people["date_of_birth"] }} )</A></P>
+ {% endif %}
+{% endfor %}

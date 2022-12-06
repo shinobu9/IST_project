@@ -1,0 +1,4 @@
+<H3>Музеи</H3>
+{% for museum in museums_list %}
+<P><A href=museum/{{museum["id"]}}>{{ museum["name"] }}</A></P>
+{% endfor %}

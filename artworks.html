@@ -1,0 +1,4 @@
+<H3>Произведения</H3>
+{% for artwork in artwork_list %}
+<P><A href=artwork/{{artwork["id"]}}>{{ artwork["name"] }}</A></P>
+{% endfor %}
