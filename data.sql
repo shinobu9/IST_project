@@ -1,0 +1,11 @@
+PRAGMA foreign_keys=on;
+PRAGMA encoding="UTF-8";
+CREATE TABLE Museums(id INTEGER NOT NULL PRIMARY KEY autoincrement, name text not null, date_found text, city_id int not null, foreign key (city_id) references Cities (id));
+CREATE TABLE Cities(id integer not null primary key autoincrement, name text not null, country_id int not null, foreign key (country_id) references Countries (id));
+CREATE TABLE Countries(id integer not null primary key autoincrement, name text not null);
+CREATE TABLE Country_person(country_id integer not null, people_id integer not null, primary key (country_id, people_id), foreign key (country_id) references Countries (id), foreign key (people_id) references People (id));
+CREATE TABLE People(id integer not null primary key autoincrement, name text not null, date_of_birth text);
+CREATE TABLE Deaths(people_id int not null primary key, date text not null, foreign key (people_id) references People (id));
+CREATE TABLE Arts_people(art_id integer not null, people_id integer not null, primary key (art_id, people_id), foreign key (art_id) references Artworks (id), foreign key (people_id) references People (id));
+CREATE TABLE Art_types(id integer not null primary key autoincrement, name text not null);
+CREATE TABLE Artworks(id integer not null primary key autoincrement, name text not null, type_id int not null, date_created text, museum_id int, foreign key (type_id) references Art_types (id), foreign key (museum_id) references Museums (id));
