@@ -1,8 +1,4 @@
 <H3>Произведения</H3>
 {% for artwork in artwork_list %}
-<P>{{ artwork["name"] }}</P>
-<P>{{ artwork["type"] }}</P>
-<P>{{ artwork["author"] }}</P>
-<P>{{ artwork["date_created"] }}</P>
-<P>{{ artwork["museum"] }}</P>
+<P>{{ artwork["name"], artwork["type"], artwork["author"], artwork["date_created"], artwork["museum"] }}</P>
 {% endfor %}
