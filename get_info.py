@@ -36,13 +36,11 @@ class ArtsData(object):
 
     def get_museums(self):
         # возвращает список названий музеев.
-        sql = text("select name from Museums;")
+        sql = text("select id, name from Museums;")
         sql_result = self._engine.execute(sql)
         row = sql_result.fetchall()  
-        res = []
-        for i in range(len(row)):       
-            res.append(row[i][0])
-        return res
+        return row
+
 
 
     def get_people(self):
