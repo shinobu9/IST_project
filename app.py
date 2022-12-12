@@ -24,12 +24,12 @@ def museum(museum_id=None):
        http://mipt-space-tis.ru:5000/author """
     full_info_museum = bd.get_full_info_museum(museumId)
     museum_name = full_info_museum['museumName']
-    museum_date_found = full_info_museum['']
+    museum_date_found = full_info_museum['foundDate']
     museum_city = full_info_museum['city']
     museum_country = full_info_museum['country']
     artworks = full_info_museum['artworks']
-    ret = render_template("museum.html",museum_name=museum_name,
-    museum_date_found=museum_date_found, museum_city=museum_city, museum_country=museum_country, artworks=artworks)
+    ret = render_template("museum.html",museumName=museum_name,
+    foundDate=museum_date_found, city=museum_city, country=museum_country, artworks=artworks)
     #ret ="<pre>" + str(museumName) +"\n" + str(countries) + "\n" + str(books) +
     "</pre>"
     return ret
