@@ -10,7 +10,7 @@ def start():
     ret = render_template("start.html")
     return ret
 
-@app.route("/museums")
+@app.route("/museums/")
 def museums():
     """Обрабатывает запрос к странице со списком музеев
        http://mipt-space-tis.ru:50XX/ """
