@@ -10,7 +10,7 @@ def start():
     ret = render_template("start.html")
     return ret
 
-@app.route("/museums/")
+@app.route("/museums")
 def museums():
     """Обрабатывает запрос к странице со списком музеев
        http://mipt-space-tis.ru:50XX/ """
@@ -18,7 +18,7 @@ def museums():
     ret = render_template("museums.html",museums_list=museums_list)
     return ret
 
-@app.route("/<museum_id>/")
+@app.route("/museums/<museum_id>")
 def museum(museum_id=None):
     """Обрабатывает запрос к странице конретного музея
        http://mipt-space-tis.ru:5000/author """
@@ -34,7 +34,7 @@ def museum(museum_id=None):
     "</pre>"
     return ret
 
-@app.route("/people/")
+@app.route("/people")
 def people():
     """Обрабатывает запрос к странице со списком авторов
        http://mipt-space-tis.ru:50XX/ """
