@@ -59,7 +59,7 @@ birth=birth, death=death, countries=countries, artworks=artworks)
     "</pre>"
     return ret
 
-@app.route("/artworks/")
+@app.route("/artworks")
 def artworks():
     """Обрабатывает запрос к странице со списком авторов
        http://mipt-space-tis.ru:50XX/ """
