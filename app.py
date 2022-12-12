@@ -22,7 +22,7 @@ def museums():
 def museum(museum_id=None):
     """Обрабатывает запрос к странице конретного музея
        http://mipt-space-tis.ru:5000/author """
-    full_info_museum = bd.get_full_info_museum(museumId)
+    full_info_museum = bd.get_full_info_museum(museum_id)
     museum_name = full_info_museum['museumName']
     museum_date_found = full_info_museum['foundDate']
     museum_city = full_info_museum['city']
@@ -42,7 +42,7 @@ def people():
     ret = render_template("people.html",authors_list=authors_list)
     return ret
 
-@app.route("/people/<people_id>")
+@app.route("/person/<people_id>")
 def person(people_id=None):
     """Обрабатывает запрос к странице конретного автора
        http://mipt-space-tis.ru:50XX/author """
