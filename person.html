@@ -1,10 +1,10 @@
-<H2>{{ person_name }}</H2>
-{% if author["death"] != None %}
-<P>{{ author["birth"] }}-{{ author["death"]}}</P>
+<H2>{{ "name" }}</H2>
+{% if "death" != None %}
+<P>{{ "birth" }}-{{ "death"}}</P>
 {% else %}
-<P>род. {{ author["birth"] }}</P>
-<P>Страны: {{ countries }}.</P>
+<P>род. {{ "birth" }}</P>
+<P>Страны: {{ "countries" }}.</P>
 <H3>Список произведений:</H3>
 {% for artwork in artworks %}
-<P>{{artwork["name"]}}. {{artwork["year"]}}</P>
+<P>{{artwork}}</P>
 {% endfor %}
