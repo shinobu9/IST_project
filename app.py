@@ -18,8 +18,8 @@ def museums():
     ret = render_template("museums.html",museums_list=museums_list)
     return ret
 
-@app.route("/<museumId>")
-def museum(museumId=None):
+@app.route("/<museum_id>")
+def museum(museum_id=None):
     """Обрабатывает запрос к странице конретного музея
        http://mipt-space-tis.ru:5000/author """
     full_info_museum = bd.get_full_info_museum(museumId)
