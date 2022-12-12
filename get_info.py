@@ -45,7 +45,7 @@ class ArtsData(object):
 
     def get_people(self):
         # список кортежей вида (id, name)
-        sql = text("select id, name from People")
+        sql = text("select id, name from People;")
         sql_result = self._engine.execute(sql)
         row = sql_result.fetchall()  
         return row
