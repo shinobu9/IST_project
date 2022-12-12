@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, text
 
 class ArtsData(object):
     def __init__(self):
-        self._engine = create_engine(f"sqlite:///museums.db", echo = True)
+        self._engine = create_engine(f"sqlite:///data.db", echo = True)
 	
 
     def get_full_info_museum(self, museumId):
