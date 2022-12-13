@@ -1,8 +1,8 @@
 from flask import Flask , render_template
-from db_lib import museums_data
+from db_lib import art_data
  
 app = Flask(__name__)
-bd = museums_data()
+bd = art_data()
  
 @app.route("/")
 def museums_artworks():
