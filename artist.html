@@ -1,0 +1,9 @@
+<h2>{{artist_name}}</h2>
+<p>country</p>
+{%for c in countries%}
+<p>{{c["name"]}}</p>
+{%endfor%}
+<h3>List artworks of {{artist_name}}</h3>
+{%for artwork in artworks%}
+<p>{{artwork["name"]}}</p>
+{%endfor%}
