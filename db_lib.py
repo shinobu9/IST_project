@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, text
 class museums_data(object):
     def __init__(self):
-        self._engine= create_engine("sqlite:///data.db", echo = True)
+        self._engine= create_engine("sqlite:///art.db", echo = True)
     def get_museums(self):
         sql = text("""select a.name as name, a.id as id, date_found, b.city as city, b.country as country from Museums a join
         (select a.name as city, b.name as country, a.id as city_id from Cities a join Countries b on a.country_id = b.id) as b on a.city_id = b.city_id;""")
