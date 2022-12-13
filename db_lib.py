@@ -18,18 +18,18 @@ class museums_data(object):
             ret.append(dict(record))
         return ret
     def get_artworks(self):
-#         sql = text("""select a.*, b.name as museum from ( select a.name as name, a.type as type, date_of_creation as date_of_creation ,b.name as artist, mu_id from(select a.name, a.people_id, date_of_creation, b.name as type, a.museum_id as mu_id from Artworks as a join Art_types as b on a.type_id = b.id) as a join (select * from People as a left join Deaths as b on a.id = b.people_id) as b on a.people_id = b.people_id) as a join Museums as b on a.mu_id = b.id;""")
-        sql = text("""select a.name as name, a.date_created as date_of_creation, t.name as type, p.name as artist, m.name as museum
-           from Artworks a left join Art_types t on t.id=a.type_id left join Arts_people ap on ap.art_id=a.id left join People p on p.id=ap.people_id
-           left join Museums m on m.id=a.museum_id;""")
+        sql = text("""select a.name as name, a.date_created as date_of_creation, t.name as type, xxx.name as artist, m.name as museum from Artworks a 
+        left join Art_types t on t.id=a.type_id 
+        left join Museums m on m.id=a.museum_id 
+        left join Arts_people ap on ap.art_id=a.id 
+        left join (select ap.art_id as art_id, group_concat(p.name, ", ") as name from Arts_people ap left join People p on p.id=ap.people_id group by ap.art_id) xxx on xxx.art_id = a.id;""")
         sql_result = self._engine.execute(sql)
         ret = []
         for record in sql_result:
             ret.append(dict(record))
         return ret
     def get_artworks_museum(self,museums_id):
-        sql = text("""select group_concat(b.name,\",\") as museums, a.name as name from Artworks as a join Museums as b
-                     on a.museum_id = b.id where b.id = """+str(museums_id)+";" )
+        sql = text("""select a.name as artworks from Artworks as a join Museums as b on a.museum_id = b.id where b.id = """+str(museums_id)+";" )
         sql_result = self._engine.execute(sql)
         ret = []
         for record in sql_result:
@@ -69,7 +69,8 @@ class museums_data(object):
             ret.append(dict(record))
         return ret
     def get_artworks_people(self,people_id):
-        sql =  text("select group_concat(a.name,\",\") as people, b.name as name from People as a left join Arts_people ap on ap.people_id = a.id left join Artworks as b on ap.art_id =b.id where a.id=" + str(people_id) +";")
+#         sql =  text("select group_concat(a.name,\",\") as people, b.name as name from People as a left join Arts_people ap on ap.people_id = a.id left join Artworks as b on ap.art_id =b.id where a.id=" + str(people_id) +";")
+        sql = text("select a.name as artworks from People as p left join Arts_people ap on ap.people_id = p.id left join Artworks as a on ap.art_id =a.id where p.id=" + str(people_id) +";")
         sql_result = self._engine.execute(sql)
         ret = []
         for record in sql_result:
