@@ -1,9 +1,9 @@
 <h2>Artworks</h2>
 {%for artwork in artworks_list%}
-<p>-{{artwork["name"]}}:
-<br>date of creation :{{artwork["date_of_creation"]}}
-<br>type : {{artwork["type"]}}
-<br>author: {{artwork["artist"]}}
-<br>museums: {{artwork["museum"]}}
+<p>--{{artwork["name"]}}--
+<br>date of creation: {{artwork["date_of_creation"]}}
+<br>type: {{artwork["type"]}}
+<br>author(s): {{artwork["artist"]}}
+<br>museum: {{artwork["museum"]}}
 </p>
 {%endfor%}
