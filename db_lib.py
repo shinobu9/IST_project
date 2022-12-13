@@ -37,7 +37,7 @@ class museums_data(object):
     def get_country(self, museums_id):
         sql = text("""select group_concat(a.name,\",\") as countries from
                        Countries as a join(select * from Cities as a join Museums as b on a.id = b.city_id where
-                       b.id= """ + str(museums_id) +";") as b on a.id = b.country_id;")
+                       b.id= """ + str(museums_id) +" as b on a.id = b.country_id;")
         sql_result = self._engine.execute(sql)
         for record in sql_result:
             dictionary = dict(record)
