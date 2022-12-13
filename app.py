@@ -36,9 +36,7 @@ def artist(artist_id=None):
     return ret
 @app.route("/proizv")
 def artworks():
-    artists_list = bd.get_people()
-    ret = render_template("artists.html", artists_list = artists_list)
-#     artworks_list = bd.get_artworks()
-#     ret = render_template("artworks.html", artworks_list = artworks_list)
+    artworks_list = bd.get_artworks()
+    ret = render_template("proizv.html", artworks_list = artworks_list)
     return ret
 app.run(host = '0.0.0.0', port = 5005)
