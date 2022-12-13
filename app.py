@@ -34,7 +34,7 @@ def artist(artist_id=None):
     artworks = bd.get_artworks_people(artist_id)
     ret = render_template("artist.html", artist_name = artist_name, countries = countries, artworks = artworks)
     return ret
-@app.route("/artworks")
+@app.route("/proizv")
 def artworks():
     artists_list = bd.get_people()
     ret = render_template("artists.html", artists_list = artists_list)
