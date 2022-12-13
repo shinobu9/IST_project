@@ -55,7 +55,7 @@ class museums_data(object):
             res = str(muse["date_found"])
         return res
     def get_museum_city(self, museum_id):
-        sql = text("select c.name as name from Museums m join Cities c on c.id=m.city_id where id ="+str(museum_id)+ " ;")
+        sql = text("select c.name as name from Museums m join Cities c on c.id=m.city_id where m.id ="+str(museum_id)+ " ;")
         sql_result = self._engine.execute(sql)
         for muse in sql_result:
             res = str(muse["name"])
