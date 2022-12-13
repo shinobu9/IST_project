@@ -1,0 +1,4 @@
+<h3>Artists</h3>
+{%for artist in artists_list%}
+<p><a href=artist/{{artist["id"]}}>{{artist["name"]}}({{artist["birth"]}}-{{artist["death"]}})</a><p>
+{%endfor%}
