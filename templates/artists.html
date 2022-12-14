@@ -1,0 +1,8 @@
+<h3>Artists</h3>
+{%for artist in artists_list%}
+{% if artist["death"] != None %}
+<p><a href=artist/{{artist["id"]}}>{{artist["name"]}} ({{artist["birth"]}}-{{artist["death"]}})</a><p>
+{% else %}
+<p><a href=artist/{{artist["id"]}}>{{artist["name"]}} (born {{artist["birth"]}})</a><p>
+{% endif %}
+{%endfor%}

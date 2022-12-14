@@ -1,80 +1,42 @@
-from flask import Flask, render_template
-from get_info import ArtsData
-
+from flask import Flask , render_template
+from db_lib import art_data
+ 
 app = Flask(__name__)
-bd = ArtsData()
-
-
+bd = art_data()
+ 
 @app.route("/")
-def start():
+def museums_artworks():
     ret = render_template("start.html")
     return ret
-
-@app.route("/museums/")
+@app.route("/museums")
 def museums():
-    """Обрабатывает запрос к странице со списком музеев
-       http://mipt-space-tis.ru:50XX/ """
     museums_list = bd.get_museums()
-    ret = render_template("museums.html",museums_list=museums_list)
+    ret = render_template("museums.html", museums_list = museums_list)
     return ret
-
-@app.route("/museums/museum/<museum_id>")
-def museum(museum_id=None):
-    """Обрабатывает запрос к странице конретного музея
-       http://mipt-space-tis.ru:5000/author """
-    full_info_museum = bd.get_full_info_museum(museum_id)
-    museum_name = full_info_museum['museumName']
-    museum_date_found = full_info_museum['foundDate']
-    museum_city = full_info_museum['city']
-    museum_country = full_info_museum['country']
-    artworks = full_info_museum['artworks']
-    ret = render_template("museum.html",museumName=museum_name,
-    foundDate=museum_date_found, city=museum_city, country=museum_country, artworks=artworks)
-    #ret ="<pre>" + str(museumName) +"\n" + str(countries) + "\n" + str(books) +
-    "</pre>"
+@app.route("/museum/<museum_id>")
+def museum(museum_id =None):
+    museum_name = bd.get_museum_name(museum_id)
+    artworks = bd.get_artworks_museum(museum_id)
+    country = bd.get_country(museum_id)
+    city = bd.get_museum_city(museum_id)
+    date_of_found = bd.get_museum_date_of_found(museum_id)
+    ret = render_template("museum.html",museum_name = museum_name, artworks = artworks,country= country, city=city, date_of_found = date_of_found)
     return ret
-
-@app.route("/people/")
-def people():
-    """Обрабатывает запрос к странице со списком авторов
-       http://mipt-space-tis.ru:50XX/ """
-    authors_list = bd.get_people()
-    ret = render_template("people.html",authors_list=authors_list)
+@app.route("/artists")
+def artists():
+    artists_list = bd.get_people()
+    ret = render_template("artists.html", artists_list = artists_list)
     return ret
-
-@app.route("/people/person/<people_id>")
-def person(people_id=None):
-    """Обрабатывает запрос к странице конретного автора
-       http://mipt-space-tis.ru:50XX/author """
-
-    full_info_person = bd.get_full_info_person(people_id)
-    name = full_info_person['name']
-    birth = full_info_person['birthday']
-    death = full_info_person['deathDate']
-    countries = full_info_person['countries']
-    artworks = full_info_person['artworks']
-    ret = render_template("person.html",name=name,
-birth=birth, death=death, countries=countries, artworks=artworks)
-    #ret ="<pre>" + str(author_name) +"\n" + str(countries) + "\n" + str(books) +
-    "</pre>"
+@app.route("/artist/<artist_id>")
+def artist(artist_id=None):
+    artist_name = bd.get_name_people(artist_id)
+    countries = bd.get_country_people(artist_id)
+    artworks = bd.get_artworks_people(artist_id)
+    ret = render_template("artist.html", artist_name = artist_name, countries = countries, artworks = artworks)
     return ret
-
-@app.route("/artworks/")
+@app.route("/proizv")
 def artworks():
-    """Обрабатывает запрос к странице со списком авторов
-       http://mipt-space-tis.ru:50XX/ """
-    full_info_artworks = bd.get_full_info_artworks()
-    artwork_list = []
-
-    for i in range(len(full_info_artworks)):
-        d = {}
-        d['name'] = full_info_artworks[i][0]
-        d['type'] = full_info_artworks[i][1]
-        d['author'] = full_info_artworks[i][2]
-        d['date_created'] = full_info_artworks[i][3]
-        d['museum'] = full_info_artworks[i][4]
-        artwork_list.append(d)
-    ret = render_template("artworks.html",artwork_list=artwork_list)
+    artworks_list = bd.get_artworks()
+    ret = render_template("proizv.html", artworks_list = artworks_list)
     return ret
-
-app.run(host='0.0.0.0',port=5005)
+app.run(host = '0.0.0.0', port = 5005)

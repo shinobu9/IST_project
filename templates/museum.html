@@ -1,0 +1,8 @@
+<h2>{{museum_name}}</h2>
+<p>Date found: {{date_of_found}}
+<br>City: {{city}}
+<br>Country: {{country}}</p>
+<h3>Artworks in {{museum_name}}</h3>
+{%for artwork in artworks%}
+<p>{{artwork["name"]}}</p>
+{%endfor%}
