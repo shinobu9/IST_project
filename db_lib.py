@@ -11,7 +11,7 @@ class art_data(object):
             ret.append(dict(record))
         return ret
     def get_people(self):
-        sql = text("""select a.id , a.name, a.date_of_birth as birth, b.date as death from People a join Deaths b on a.id = b.people_id;""")
+        sql = text("""select a.id , a.name, a.date_of_birth as birth, b.date as death from People a left join Deaths b on a.id = b.people_id;""")
         sql_result = self._engine.execute(sql)
         ret = []
         for record in sql_result:
