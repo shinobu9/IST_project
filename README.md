@@ -1,2 +1,2 @@
 # IST_project
-information systems theory class project
+Сайт, с подключенной базой данных
